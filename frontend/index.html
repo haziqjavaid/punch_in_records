@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FaceAttend — AI Attendance Dashboard</title>
+<meta name="description" content="Real-time AI-powered face recognition attendance system">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="dot"></div>
+    Face<span>Attend</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Dashboard</a>
+    <a href="register.html">Register</a>
+    <a href="session.html">Live Session</a>
+    <a href="reports.html">Reports</a>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="hero">
+    <div class="badge"><span class="dot-live"></span> System Online</div>
+    <h1>Attendance <span class="gradient">Dashboard</span></h1>
+    <p>Real-time face recognition — zero manual effort</p>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid" id="statsGrid">
+    <div class="card stat-card accent">
+      <div class="stat-value" id="statStudents">—</div>
+      <div class="stat-label">Registered Students</div>
+    </div>
+    <div class="card stat-card green">
+      <div class="stat-value" id="statPresent">—</div>
+      <div class="stat-label">Present Today</div>
+    </div>
+    <div class="card stat-card blue">
+      <div class="stat-value" id="statSessions">—</div>
+      <div class="stat-label">Sessions Today</div>
+    </div>
+    <div class="card stat-card yellow">
+      <div class="stat-value" id="statActive">—</div>
+      <div class="stat-label">Active Sessions</div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="section-header mt-2">
+    <div><h2>Quick Actions</h2></div>
+  </div>
+  <div class="quick-actions mt-1">
+    <a href="session.html" class="action-card">
+      <div class="icon" style="background:rgba(0,245,160,0.12)">📹</div>
+      <h3>Start Live Session</h3>
+      <p>Open camera and begin recognizing students in real-time</p>
+    </a>
+    <a href="register.html" class="action-card">
+      <div class="icon" style="background:rgba(108,99,255,0.12)">🎓</div>
+      <h3>Register Student</h3>
+      <p>Add a new student and capture their face for recognition</p>
+    </a>
+    <a href="reports.html" class="action-card">
+      <div class="icon" style="background:rgba(79,172,254,0.12)">📊</div>
+      <h3>View Reports</h3>
+      <p>Browse attendance records and export to CSV</p>
+    </a>
+  </div>
+
+  <!-- Activity + Students -->
+  <div class="grid-2 mt-3">
+    <div class="card">
+      <div class="section-header">
+        <div><h2>Recent Activity</h2><p class="text-muted text-sm">Latest recognitions across all sessions</p></div>
+        <button class="btn btn-ghost" onclick="loadStats()" style="padding:6px 12px;font-size:.8rem">↻ Refresh</button>
+      </div>
+      <div id="activityFeed"><div class="empty-state"><p>No activity yet today</p></div></div>
+    </div>
+
+    <div class="card">
+      <div class="section-header">
+        <div><h2>Registered Students</h2><p class="text-muted text-sm">All enrolled students</p></div>
+        <a href="register.html" class="btn btn-primary" style="padding:6px 14px;font-size:.8rem">+ Add</a>
+      </div>
+      <div id="studentList"><div class="empty-state"><p>No students registered yet</p></div></div>
+    </div>
+  </div>
+</main>
+
+<div id="toast"></div>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>

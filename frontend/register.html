@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FaceAttend — Register Student</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><div class="dot"></div>Face<span>Attend</span></a>
+  <div class="nav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="register.html" class="active">Register</a>
+    <a href="session.html">Live Session</a>
+    <a href="reports.html">Reports</a>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="hero">
+    <div class="badge"><span class="dot-live"></span> Face Enrollment</div>
+    <h1>Register <span class="gradient">New Student</span></h1>
+    <p>Capture 5 face samples for accurate recognition</p>
+  </div>
+
+  <div class="grid-2">
+    <!-- Left: Form + Camera -->
+    <div style="display:flex;flex-direction:column;gap:1.5rem">
+      <div class="card">
+        <h2 style="font-size:1rem;margin-bottom:1.25rem">Student Details</h2>
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="studentName" placeholder="e.g. Aisha Khan">
+        </div>
+        <div class="form-group">
+          <label>Roll Number</label>
+          <input type="text" id="rollNo" placeholder="e.g. CS-2024-042">
+        </div>
+        <div class="form-group">
+          <label>Class / Batch</label>
+          <input type="text" id="className" placeholder="e.g. CS-A 2024">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-header">
+          <div><h2 style="font-size:1rem">Camera</h2><p class="text-muted text-sm">Position face in frame, then capture</p></div>
+          <button class="btn btn-ghost" id="startCamBtn" onclick="startCamera()" style="padding:7px 14px;font-size:.82rem">▶ Start Camera</button>
+        </div>
+        <div class="camera-wrap" id="camWrap">
+          <div class="camera-placeholder" id="camPlaceholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M5 18H4a2 2 0 01-2-2V8a2 2 0 012-2h1m4-2h6a2 2 0 012 2v12a2 2 0 01-2 2H9a2 2 0 01-2-2V6a2 2 0 012-2z"/></svg>
+            <span>Camera not started</span>
+          </div>
+          <video id="video" autoplay muted playsinline style="display:none;max-height:380px"></video>
+          <canvas id="overlay" class="overlay" style="display:none"></canvas>
+        </div>
+        <button class="btn btn-success mt-2" id="captureBtn" onclick="captureFrame()" style="width:100%" disabled>
+          📸 Capture Sample (<span id="captureCount">0</span>/5)
+        </button>
+      </div>
+    </div>
+
+    <!-- Right: Captured samples + submit -->
+    <div style="display:flex;flex-direction:column;gap:1.5rem">
+      <div class="card">
+        <h2 style="font-size:1rem;margin-bottom:.5rem">Captured Samples</h2>
+        <p class="text-muted text-sm">Need 5 samples for best accuracy. Vary your angle slightly.</p>
+        <div class="photo-grid mt-2" id="photoGrid">
+          <div class="photo-slot"><span class="count">1</span></div>
+          <div class="photo-slot"><span class="count">2</span></div>
+          <div class="photo-slot"><span class="count">3</span></div>
+          <div class="photo-slot"><span class="count">4</span></div>
+          <div class="photo-slot"><span class="count">5</span></div>
+        </div>
+
+        <div id="progressMsg" class="mt-2" style="font-size:.82rem;color:var(--text-secondary)">No samples captured yet.</div>
+
+        <button class="btn btn-primary btn-lg mt-3" id="registerBtn" onclick="registerStudent()" style="width:100%" disabled>
+          🎓 Register Student
+        </button>
+        <button class="btn btn-ghost mt-1" onclick="resetForm()" style="width:100%;margin-top:.5rem">Reset</button>
+      </div>
+
+      <!-- Registered students list -->
+      <div class="card">
+        <div class="section-header">
+          <div><h2 style="font-size:1rem">Enrolled Students</h2></div>
+          <button class="btn btn-ghost" onclick="loadStudents()" style="padding:6px 12px;font-size:.8rem">↻</button>
+        </div>
+        <div id="enrolledList" style="max-height:340px;overflow-y:auto">
+          <div class="empty-state"><p>Loading…</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="toast"></div>
+
+<!-- face-api.js from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+<script src="js/register.js"></script>
+</body>
+</html>

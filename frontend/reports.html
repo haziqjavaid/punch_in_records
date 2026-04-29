@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FaceAttend — Reports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><div class="dot"></div>Face<span>Attend</span></a>
+  <div class="nav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="register.html">Register</a>
+    <a href="session.html">Live Session</a>
+    <a href="reports.html" class="active">Reports</a>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="hero">
+    <div class="badge"><span class="dot-live"></span> Reports</div>
+    <h1>Attendance <span class="gradient">Reports</span></h1>
+    <p>Filter, review, and export attendance records</p>
+  </div>
+
+  <!-- Filters -->
+  <div class="card mt-1">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr)) auto auto;gap:1rem;align-items:flex-end;flex-wrap:wrap">
+      <div class="form-group" style="margin:0">
+        <label>Date</label>
+        <input type="date" id="filterDate">
+      </div>
+      <div class="form-group" style="margin:0">
+        <label>Class</label>
+        <select id="filterClass"><option value="">All classes</option></select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label>Session</label>
+        <select id="filterSession"><option value="">All sessions</option></select>
+      </div>
+      <button class="btn btn-primary" onclick="loadReport()">🔍 Filter</button>
+      <button class="btn btn-ghost" onclick="exportCSV()">⬇ Export CSV</button>
+    </div>
+  </div>
+
+  <!-- Summary stats -->
+  <div class="stats-grid mt-2" id="reportStats" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
+    <div class="card stat-card green"><div class="stat-value" id="rPresent">—</div><div class="stat-label">Present</div></div>
+    <div class="card stat-card accent"><div class="stat-value" id="rAbsent">—</div><div class="stat-label">Absent</div></div>
+    <div class="card stat-card blue"><div class="stat-value" id="rRate">—</div><div class="stat-label">Attendance %</div></div>
+  </div>
+
+  <!-- Table -->
+  <div class="card mt-2">
+    <div class="section-header">
+      <div><h2 style="font-size:1rem">Attendance Records</h2><p class="text-muted text-sm" id="recordCount">Loading…</p></div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Roll No</th>
+            <th>Class</th>
+            <th>Session</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Marked At</th>
+            <th>Confidence</th>
+          </tr>
+        </thead>
+        <tbody id="reportBody">
+          <tr><td colspan="8" style="text-align:center;color:var(--text-muted);padding:2rem">Loading records…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<div id="toast"></div>
+<script src="js/reports.js"></script>
+</body>
+</html>

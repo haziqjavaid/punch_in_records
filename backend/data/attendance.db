@@ -1,0 +1,13 @@
+{"session_id":"eQtqzS0Ww2hjxISM","student_id":"dWGvt3m2pRUNzyAF","confidence":0.81,"session_student":"eQtqzS0Ww2hjxISM__dWGvt3m2pRUNzyAF","timestamp":"2026-04-28T07:30:10.482Z","_id":"77pDwwkyPrUOyr53"}
+{"session_id":"eQtqzS0Ww2hjxISM","student_id":"CPTmgPAsPkmGlQk3","confidence":0.57,"session_student":"eQtqzS0Ww2hjxISM__CPTmgPAsPkmGlQk3","timestamp":"2026-04-28T07:30:15.246Z","_id":"Vd4LflJnrJe8JQYQ"}
+{"$$indexCreated":{"fieldName":"session_student","unique":true,"sparse":false}}
+{"$$indexCreated":{"fieldName":"session_student","unique":true}}
+{"session_id":"sJRfqiB5oVqze8S2","student_id":"dWGvt3m2pRUNzyAF","confidence":0.56,"session_student":"sJRfqiB5oVqze8S2__dWGvt3m2pRUNzyAF","timestamp":"2026-04-29T04:49:47.516Z","_id":"TendR5arKJUr0fKm"}
+{"session_id":"sJRfqiB5oVqze8S2","student_id":"CPTmgPAsPkmGlQk3","confidence":0.66,"session_student":"sJRfqiB5oVqze8S2__CPTmgPAsPkmGlQk3","timestamp":"2026-04-29T04:49:52.743Z","_id":"FmIkHvDwPsOf7Oqd"}
+{"session_id":"gC7LmLBuOHE62MCv","student_id":"dWGvt3m2pRUNzyAF","confidence":0.62,"session_student":"gC7LmLBuOHE62MCv__dWGvt3m2pRUNzyAF","timestamp":"2026-04-29T05:22:23.696Z","_id":"pd5Lhyi3m8EX8pKF"}
+{"session_id":"mrufAsMbqPfur9Jv","student_id":"dWGvt3m2pRUNzyAF","confidence":0.76,"session_student":"mrufAsMbqPfur9Jv__dWGvt3m2pRUNzyAF","timestamp":"2026-04-29T05:24:57.638Z","_id":"8dm6XkPQozjS9ETf"}
+{"session_id":"mrufAsMbqPfur9Jv","student_id":"CPTmgPAsPkmGlQk3","confidence":0.59,"session_student":"mrufAsMbqPfur9Jv__CPTmgPAsPkmGlQk3","timestamp":"2026-04-29T05:25:10.677Z","_id":"GggrS9QbNoaWP5u8"}
+{"session_id":"sjzNT50tfx9iutGa","student_id":"CPTmgPAsPkmGlQk3","confidence":0.56,"session_student":"sjzNT50tfx9iutGa__CPTmgPAsPkmGlQk3","timestamp":"2026-04-29T05:28:10.057Z","_id":"VpIKAGzst1ZoN5gI"}
+{"session_id":"sjzNT50tfx9iutGa","student_id":"dWGvt3m2pRUNzyAF","confidence":0.64,"session_student":"sjzNT50tfx9iutGa__dWGvt3m2pRUNzyAF","timestamp":"2026-04-29T05:28:13.724Z","_id":"1qIu4RHlOE9EteQ8"}
+{"session_id":"Gzq3j91JwHLZl8qb","student_id":"CPTmgPAsPkmGlQk3","confidence":0.7,"session_student":"Gzq3j91JwHLZl8qb__CPTmgPAsPkmGlQk3","timestamp":"2026-04-29T05:31:29.639Z","_id":"zSe8Yck1f6aToUz1"}
+{"session_id":"Gzq3j91JwHLZl8qb","student_id":"dWGvt3m2pRUNzyAF","confidence":0.62,"session_student":"Gzq3j91JwHLZl8qb__dWGvt3m2pRUNzyAF","timestamp":"2026-04-29T05:31:29.641Z","_id":"jrfHKNWTCKpuKOeK"}

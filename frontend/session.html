@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FaceAttend — Live Recognition Session</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .session-controls { display:flex; gap:1rem; flex-wrap:wrap; }
+  #fpsBar { font-size:.72rem; color:var(--text-muted); margin-top:6px; }
+  .conf-bar { height:4px; border-radius:2px; background:var(--border); overflow:hidden; margin-top:6px; }
+  .conf-bar-fill { height:100%; border-radius:2px; background:linear-gradient(90deg,var(--accent),var(--accent-green)); transition:width .3s; }
+  .count-badge { display:inline-flex; align-items:center; justify-content:center; min-width:26px; height:26px; border-radius:8px; background:rgba(0,245,160,0.15); color:var(--accent-green); font-size:.8rem; font-weight:700; padding:0 6px; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><div class="dot"></div>Face<span>Attend</span></a>
+  <div class="nav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="register.html">Register</a>
+    <a href="session.html" class="active">Live Session</a>
+    <a href="reports.html">Reports</a>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="hero">
+    <div class="badge"><span class="dot-live"></span> Face Recognition</div>
+    <h1>Live <span class="gradient">Recognition Session</span></h1>
+    <p>Camera scans and marks attendance automatically in real-time</p>
+  </div>
+
+  <!-- Session setup -->
+  <div class="card mt-1" id="setupCard">
+    <h2 style="font-size:1rem;margin-bottom:1.25rem">Create Session</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:1rem;align-items:flex-end;flex-wrap:wrap">
+      <div class="form-group" style="margin:0">
+        <label>Session Name</label>
+        <input type="text" id="sessionName" placeholder="e.g. Morning Lecture">
+      </div>
+      <div class="form-group" style="margin:0">
+        <label>Class / Batch</label>
+        <select id="sessionClass"><option value="">Select class…</option></select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label>Date</label>
+        <input type="date" id="sessionDate">
+      </div>
+      <button class="btn btn-primary btn-lg" id="startSessionBtn" onclick="startSession()">▶ Start</button>
+    </div>
+  </div>
+
+  <!-- Active session bar -->
+  <div class="session-status mt-2" id="sessionBar" style="display:none">
+    <span class="dot-live" style="width:10px;height:10px;border-radius:50%;background:var(--accent-green);animation:pulse-dot 1.2s ease-in-out infinite;display:inline-block"></span>
+    <span id="sessionBarText">Session active</span>
+    <div style="flex:1"></div>
+    <button class="btn btn-danger" onclick="endSession()" style="padding:6px 14px;font-size:.82rem">⏹ End Session</button>
+  </div>
+
+  <div class="grid-2 mt-2">
+    <!-- Camera feed -->
+    <div style="display:flex;flex-direction:column;gap:1rem">
+      <div class="camera-wrap" id="camWrap">
+        <div class="camera-placeholder" id="camPlaceholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M5 18H4a2 2 0 01-2-2V8a2 2 0 012-2h1m4-2h6a2 2 0 012 2v12a2 2 0 01-2 2H9a2 2 0 01-2-2V6a2 2 0 012-2z"/></svg>
+          <span>Session not started</span>
+        </div>
+        <video id="video" autoplay muted playsinline style="display:none"></video>
+        <canvas id="overlay" class="overlay" style="display:none"></canvas>
+        <div class="scan-line" id="scanLine" style="display:none"></div>
+      </div>
+      <div id="fpsBar"></div>
+      <div class="card" style="padding:1rem">
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-muted">Recognition Threshold</span>
+          <span id="thresholdVal" class="text-sm font-bold">0.45</span>
+        </div>
+        <input type="range" id="threshold" min="0.3" max="0.7" step="0.01" value="0.45" style="width:100%;margin-top:.5rem;accent-color:var(--accent)">
+        <p class="text-muted" style="font-size:.72rem;margin-top:.4rem">Lower = stricter match. Raise if too many unknowns.</p>
+      </div>
+    </div>
+
+    <!-- Attendance list -->
+    <div class="card">
+      <div class="section-header">
+        <div>
+          <h2 style="font-size:1rem">Attendance <span class="count-badge" id="presentCount">0</span></h2>
+          <p class="text-muted text-sm" id="attendanceSubtitle">Start a session to begin</p>
+        </div>
+        <button class="btn btn-ghost" onclick="exportAttendance()" id="exportBtn" style="padding:6px 12px;font-size:.8rem" disabled>⬇ Export</button>
+      </div>
+      <div class="attendance-list" id="attendanceList">
+        <div class="empty-state"><p>No students recognized yet</p></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+<script src="js/session.js"></script>
+</body>
+</html>
